@@ -45,8 +45,8 @@ pipeline {
     }
     stage('Login to Docker Hub') {      	
         steps{                       	
-            sh 'docker login -u annelaure42 -p dckr_pat_T9GUw3Ir-7N6RYyId-6uOztNuP8'
-                sh "docker push annelaure42/brief14myapp"               		
+            sh 'sudo docker login -u annelaure42 -p dckr_pat_T9GUw3Ir-7N6RYyId-6uOztNuP8'
+            sh "sudo docker push annelaure42/brief14myapp"               		
 	        echo 'Login Completed'      
         }           
     } 
