@@ -55,10 +55,7 @@ pipeline {
             echo 'Push Image Completed'       
         }            
     }
-}
 
-
-  stages {
     stage ('Terraform Init2') {
         steps {
             script {
