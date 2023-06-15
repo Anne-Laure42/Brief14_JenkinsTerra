@@ -47,7 +47,7 @@ resource "azurerm_network_security_group" "allowedports" {
 }
 
 resource "azurerm_public_ip" "anne_terraform_public_ip" {
-   name = "anne_brief13_public_ip"
+   name = "anne_brief14_public_ip"
    location = var.location
    resource_group_name = azurerm_resource_group.anne_terraform_rg.name
    allocation_method = "Dynamic"
@@ -77,7 +77,7 @@ resource "azurerm_network_interface" "anne_terraform_ni" {
 
 resource "azurerm_linux_virtual_machine" "anne_terraform_vmnginx" {
    size = var.instance_size
-   name = "anne_brief13_nginx"
+   name = "anne_brief14_jenkinsterraform"
    resource_group_name = azurerm_resource_group.anne_terraform_rg.name
    location = azurerm_resource_group.anne_terraform_rg.location
    custom_data = base64encode(file("init-script.sh"))
