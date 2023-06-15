@@ -61,7 +61,7 @@ resource "azurerm_public_ip" "anne_terraform_public_ip" {
 }
 
 resource "azurerm_network_interface" "anne_terraform_ni" {
-   name = "anne_nginx-interface"
+   name = "anne_brief14-interface"
    location = azurerm_resource_group.anne_terraform_rg.location
    resource_group_name = azurerm_resource_group.anne_terraform_rg.name
 
@@ -92,7 +92,7 @@ resource "azurerm_linux_virtual_machine" "anne_terraform_vmnginx" {
        version = "latest"
    }
 
-   computer_name = "nginx"
+   computer_name = "pythonapp"
    admin_username = "adminuser"
    admin_password = "kingpin42330@"
    disable_password_authentication = false
