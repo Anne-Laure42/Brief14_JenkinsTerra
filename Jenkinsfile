@@ -1,7 +1,7 @@
 pipeline {
   agent any
   environment {
-      MY_CRED = credentials('AzureServicePrincipal')
+      MY_CRED = credentials('azureconnexion')
     }
     
   stages {
