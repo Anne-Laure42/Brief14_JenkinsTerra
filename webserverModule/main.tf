@@ -1,5 +1,5 @@
 resource "azurerm_resource_group" "anne_terraform_rg" {
-   name = "anne_brief13_terraform${var.environment}"
+   name = "anne_brief14_jenkinsterraform${var.environment}"
    location = var.location
 }
 
