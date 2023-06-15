@@ -1,7 +1,7 @@
 pipeline {
   agent any
   environment {
-      MY_CRED = credentials('azureconnexion')
+      MY_CRED = credentials('AzureServicePrincipal')
     }
     
   stages {
@@ -45,7 +45,8 @@ pipeline {
     }
     stage('Login to Docker Hub') {      	
         steps{                       	
-            sh 'echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'                		
+            sh 'docker login -u annelaure42 -p dckr_pat_T9GUw3Ir-7N6RYyId-6uOztNuP8'
+                sh "docker push annelaure42/brief14myapp"               		
 	        echo 'Login Completed'      
         }           
     } 
