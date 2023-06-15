@@ -1,19 +1,12 @@
 pipeline {
   agent any
 
-    parameters
-    {
-        booleanParam(defaultValue: true, description: '', name: 'Deploy')
-        string(name: 'Environment', defaultValue: "", description: '')
-        choice(choices: ['apply', 'destroy'], name: 'Action')
-  }
     
   stages {
     stage ('Terraform Init') {
         steps {
-            echo "${params.Environment}"
             script {
-                sh "cd ${params.Environment} && terraform init"
+                sh "cd StagingEnvironment && terraform init"
             }                
         }
     }
@@ -21,7 +14,7 @@ pipeline {
     stage ('Terraform Plan') {
         steps {
             script {
-                sh "cd ${params.Environment} && terraform plan"
+                sh "cd StagingEnvironment && terraform plan"
             }
         }
     }
@@ -29,7 +22,7 @@ pipeline {
     stage ('Terraform apply') {
         steps {
             script {
-                sh "cd ${params.Environment} && terraform ${params.Action} -auto-approve"
+                sh "cd StagingEnvironment && terraform apply --auto-approve"
             }    
         }
     } 
@@ -53,4 +46,31 @@ pipeline {
         }            
     }
 }
+}
+
+
+  stages {
+    stage ('Terraform Init2') {
+        steps {
+            script {
+                sh "cd ProdEnvironment && terraform init"
+            }                
+        }
+    }
+    
+    stage ('Terraform Plan2') {
+        steps {
+            script {
+                sh "cd ProdEnvironment && terraform plan"
+            }
+        }
+    }
+
+    stage ('Terraform apply2') {
+        steps {
+            script {
+                sh "cd ProdEnvironment && terraform apply --auto-approve"
+            }    
+        }
+    } 
 }
