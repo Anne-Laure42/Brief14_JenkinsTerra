@@ -9,4 +9,4 @@ sudo apt install docker.io -y
 
 #Creating container
 
-sudo docker run -d -p 1234:80 annelaure42/brief14myapp
+sudo docker run -d -p 8080:1234 annelaure42/brief14myapp
