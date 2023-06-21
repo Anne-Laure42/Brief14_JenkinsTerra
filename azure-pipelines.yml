@@ -5,13 +5,15 @@
 trigger:
   - main
 
-stages:
+- stage: Build
+  displayName: Build image
   jobs:
-  - job:
+  - job: pushToDocker
+    displayName: pushToDocker
     steps:
-  - task: Docker@2
-    inputs:
-      containerRegistry: 'docker'
-      repository: 'annelaure42/brief14myappdevops'
-      command: 'buildAndPush'
-      Dockerfile: '**/Dockerfile'
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'docker'
+        repository: 'annelaure42/brief14myappdevops'
+        command: 'buildAndPush'
+        Dockerfile: '**/Dockerfile'
