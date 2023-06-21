@@ -5,18 +5,18 @@ resources:
   - repo: self
 
 stages:
-  - stage: Build
-    displayName: Build and push stage
-    jobs:
-      - job: Build
-        displayName: Build job
-        pool:
-          vmImage: $(vmImageName)
-        steps:
-          - task: Docker@2
-            displayName: Build and push an image to container registry
-            inputs: null
-            containerRegistry: docker
-            repository: annelaure42 / brief14myapp
-            command: buildAndPush
-            Dockerfile: "**/Dockerfile"
+- stage: Build
+  displayName: Build and push stage
+  jobs:
+  - job: Build
+    displayName: Build job
+    pool:
+    vmImage: $(vmImageName)
+    steps:
+    - task: Docker@2
+      displayName: Build and push an image to container registry
+      inputs: null
+      containerRegistry: docker
+      repository: annelaure42 / brief14myapp
+      command: buildAndPush
+      Dockerfile: "**/Dockerfile"
