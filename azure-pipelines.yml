@@ -3,10 +3,14 @@ trigger:
 resources:
   - repo: self
 stages:
-  stage:
-  - task: Docker@2
-    inputs:
-    containerRegistry: 'docker'
-    repository: 'annelaure42/brief14myappdevops'
-    command: 'buildAndPush'
-    Dockerfile: '**/Dockerfile'
+  stages:
+  displayName: Build image
+  jobs:
+  - job: pushToDocker
+    displayName: pushToDocker
+    - task: Docker@2
+      inputs:
+      containerRegistry: 'docker'
+      repository: 'annelaure42/brief14myappdevops'
+      command: 'buildAndPush'
+      Dockerfile: '**/Dockerfile'
