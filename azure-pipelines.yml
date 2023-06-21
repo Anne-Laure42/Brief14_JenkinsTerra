@@ -1,33 +1,20 @@
 ---
 trigger:
-  branches:
-    include:
-      - main
-
-variables:
-  ImageName: 'annelaure42/brief14myappdevops:$(Build.BuildId)'
-
-stages:
+  - main
+resources:
+  - repo: self
   - stage: Build
-    displayName: Build image
+    displayName: Build and push stage
     jobs:
       - job: Build
-        displayName: Build
+        displayName: Build job
         pool:
-          vmImage: ubuntu-latest
+          vmImage: $(vmImageName)
         steps:
           - task: Docker@2
-            displayName: Build an image
-            inputs:
-              command: build
-              dockerfile: $(Build.SourcesDirectory)/Dockerfile
-              tags: |
-                $(tag)
-          - task: Docker@1
-            inputs: 
-              containerregistrytype: Container Registry
-              dockerRegistryEndpoint: Docker Hub
-              command: Push an image
-              imageName: $(ImageName)
-            condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
-            displayName: Push the Docker image to Dockerhub
+            displayName: Build and push an image to container registry
+            inputs: null
+            containerRegistry: docker
+            repository: annelaure42 / brief14myapp
+            command: buildAndPush
+            Dockerfile: "**/Dockerfile"
