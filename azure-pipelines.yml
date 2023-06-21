@@ -20,10 +20,14 @@ stages:
     pool:
       vmImage: ubuntu-latest
     steps:
-    - task: Docker@2
+    - task: BuildDocker@2
       displayName: Build an image
       inputs:
         command: build
         dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
         tags: |
           $(tag)
+          - task: PushDocker@0
+            inputs:
+              command: 'push'
+              imagePush: 'annelaure42/brief14myappdevops'
