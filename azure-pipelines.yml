@@ -4,11 +4,12 @@
 
 trigger:
   - main
-  
+
 stages:
-- task: Docker@2
-  inputs:
-    containerRegistry: 'docker'
-    repository: 'annelaure42/brief14myappdevops'
-    command: 'buildAndPush'
-    Dockerfile: '**/Dockerfile'
+  jobs:
+  - task: Docker@2
+    inputs:
+      containerRegistry: 'docker'
+      repository: 'annelaure42/brief14myappdevops'
+      command: 'buildAndPush'
+      Dockerfile: '**/Dockerfile'
