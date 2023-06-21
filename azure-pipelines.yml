@@ -14,8 +14,8 @@ stages:
         steps:
           - task: Docker@2
             displayName: Build and push an image to container registry
-            inputs: null
-            containerRegistry: docker
-            repository: annelaure42 / brief14myapp
-            command: buildAndPush
-            Dockerfile: "**/Dockerfile"
+            inputs: 
+              containerRegistry: docker
+              repository: annelaure42 / brief14myapp
+              command: buildAndPush
+              Dockerfile: "**/Dockerfile"
