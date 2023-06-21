@@ -22,10 +22,10 @@ stages:
               tags: |
                 $(tag)
           - task: Docker@1
-            inputs: null
-            containerregistrytype: Container Registry
-            dockerRegistryEndpoint: Docker Hub
-            command: Push an image
-            imageName: $(ImageName)
+            inputs: 
+              containerregistrytype: Container Registry
+              dockerRegistryEndpoint: Docker Hub
+              command: Push an image
+              imageName: $(ImageName)
             condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
             displayName: Push the Docker image to Dockerhub
