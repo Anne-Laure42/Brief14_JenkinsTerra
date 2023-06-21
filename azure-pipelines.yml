@@ -1,17 +1,13 @@
----
+# Docker
+# Build a Docker image
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
 trigger:
   - main
-resources:
-  - repo: self
-stages:
-  displayName: Build image
-  jobs:
-    - job: pushToDocker
-      displayName: pushToDocker
-      steps: null
-    - task: Docker@2
+
+- task: Docker@2
   inputs:
-    containerRegistry: docker
-    repository: annelaure42/brief14myappdevops
-    command: buildAndPush
-    Dockerfile: "**/Dockerfile"
+    containerRegistry: 'docker'
+    repository: 'annelaure42/brief14myappdevops'
+    command: 'buildAndPush'
+    Dockerfile: '**/Dockerfile'
