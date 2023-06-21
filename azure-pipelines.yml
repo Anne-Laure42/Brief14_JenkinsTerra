@@ -3,6 +3,8 @@ trigger:
   - main
 resources:
   - repo: self
+
+stages:
   - stage: Build
     displayName: Build and push stage
     jobs:
