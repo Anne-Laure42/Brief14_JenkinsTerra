@@ -1,10 +1,12 @@
 ---
 trigger:
-  - main
-resources:
-  - repo: self
+  branches:
+    include:
+      - main
+
 variables:
-  tag: $(Build.BuildId)
+  ImageName: 'annelaure42/brief14myappdevops:$(Build.BuildId)'
+
 stages:
   - stage: Build
     displayName: Build image
