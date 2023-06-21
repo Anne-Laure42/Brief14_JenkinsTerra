@@ -23,11 +23,20 @@ stages:
       inputs:
         provider: 'azurerm'
         command: 'init'
-        workingDirectory: 'StagingEnvironment'
+        workingDirectory: 'StagingEnvironnment'
         backendServiceArm: 'Simplon ARA Lyon Admin Cloud P22(393e3de3-0900-4b72-8f1b-fb3b1d6b97f1)'
         backendAzureRmResourceGroupName: 'anne_group'
         backendAzureRmStorageAccountName: 'annestoragebrief14'
         backendAzureRmContainerName: 'blob2'
         backendAzureRmKey: 'tf/'
+      
+    - task: TerraformTaskV4@4
+      inputs:
+        provider: 'azurerm'
+        command: 'plan'
+        workingDirectory: 'StagingEnvironment'
+        environmentServiceNameAzureRM: 'Simplon ARA Lyon Admin Cloud P22(393e3de3-0900-4b72-8f1b-fb3b1d6b97f1)'
+       
+    
     
     
