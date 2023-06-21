@@ -27,7 +27,7 @@ stages:
         backendAzureRmResourceGroupName: 'anne_group'
         backendAzureRmStorageAccountName: 'annestoragebrief14'
         backendAzureRmContainerName: 'blob2'
-        backendAzureRmKey: 'tf'
+        backendAzureRmKey: 'terraform.tfstate'
       
     - task: TerraformTaskV4@4
       inputs:
