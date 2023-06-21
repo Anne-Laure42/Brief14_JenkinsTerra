@@ -16,6 +16,6 @@ stages:
             displayName: Build and push an image to container registry
             inputs: 
               containerRegistry: docker
-              repository: annelaure42 / brief14myapp
+              repository: annelaure42/brief14myapp
               command: buildAndPush
               Dockerfile: "**/Dockerfile"
