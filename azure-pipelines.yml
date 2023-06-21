@@ -1,33 +1,31 @@
-# Docker
-# Build a Docker image
-# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
-
+---
 trigger:
-- main
-
+  - main
 resources:
-- repo: self
-
+  - repo: self
 variables:
-  tag: '$(Build.BuildId)'
-
+  tag: $(Build.BuildId)
 stages:
-- stage: Build
-  displayName: Build image
-  jobs:
-  - job: Build
-    displayName: Build
-    pool:
-      vmImage: ubuntu-latest
-    steps:
-    - task: BuildDocker@2
-      displayName: Build an image
-      inputs:
-        command: build
-        dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
-        tags: |
-          $(tag)
-          - task: PushDocker@0
+  - stage: Build
+    displayName: Build image
+    jobs:
+      - job: Build
+        displayName: Build
+        pool:
+          vmImage: ubuntu-latest
+        steps:
+          - task: BuildDocker@2
+            displayName: Build an image
             inputs:
-              command: 'push'
-              imagePush: 'annelaure42/brief14myappdevops'
+              command: build
+              dockerfile: $(Build.SourcesDirectory)/Dockerfile
+              tags: |
+                $(tag)
+          - task: Docker@1
+            inputs: null
+            containerregistrytype: Container Registry
+            dockerRegistryEndpoint: Docker Hub
+            command: Push an image
+            imageName: $(ImageName)
+            condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
+            displayName: Push the Docker image to Dockerhub
